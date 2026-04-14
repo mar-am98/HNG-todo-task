@@ -18,7 +18,6 @@ main{
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    margin-block: 20px;
 }
 
 .page-header{
