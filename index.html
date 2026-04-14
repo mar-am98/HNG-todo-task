@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        To Do Task.
+    </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main>
+        <div class="page-header">
+            <h1>To Do Task.</h1>
+            <p>Track and manage your tasks</p>
+        </div>
+        <div class="tasks_container">
+            <article data-testid="test-todo-card" class="high">
+                <header class="card_header">
+                    <div class="card_top">
+                        <input type="checkbox" data-testid="test-todo-complete-toggle" id="checkbox" aria-label="toggle task completion">
+                        <h2 data-testid="test-todo-title">this is the title for tasks</h2>
+                    </div>
+                    <span data-testid="test-todo-priority" class="pills" aria-label="priority: high">High</span>
+                </header>
+                <section class="card_body">
+                    <p data-testid="test-todo-description" class="task_desc">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum vitae amet 
+                    </p>
+                    <div class="card_time">
+                        <time data-testid="test-todo-due-date">
+                            <span class="clock_icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </span>
+                            <span class="date">
+                                Apr 16, 2026
+                            </span>
+                        </time>
+                        <time datetime="" data-testid="test-todo-time-remaining" class="dueDate" aria-live="polite">
+                            Due in 3 days
+                        </time>
+                        <span data-testid="test-todo-status" class="status" aria-label="status: in progress">
+                            In Progress
+                        </span>
+                    </div>
+                </section>
+                <footer>
+                    <ul data-testid="test-todo-tags" role="list">
+                        <li data-testid="test-todo-tag-work">Work</li>
+                        <li data-testid="test-todo-tag-urgent">Urgent</li>
+                    </ul>
+                    <div class="card_btns">
+                        <button data-testid="test-todo-edit-button" aria-label="edit task" class="edit_icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-edit">
+                                <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+                                <path d="m15 5 4 4"></path>
+                            </svg>
+                        </button>
+                        <button data-testid="test-todo-delete-button" aria-label="delete task" class="detete_icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </footer>
+            </article>
+
+            <article data-testid="test-todo-card" class="low">
+                <header class="card_header">
+                    <div class="card_top">
+                        <input type="checkbox" data-testid="test-todo-complete-toggle" id="checkbox" aria-label="toggle task completion">
+                        <h2 data-testid="test-todo-title">this is the title for tasks</h2>
+                    </div>
+                    <span data-testid="test-todo-priority" class="pills" aria-label="priority: low">Low</span>
+                </header>
+                <section class="card_body">
+                    <p data-testid="test-todo-description" class="task_desc">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum vitae amet 
+                    </p>
+                    <div class="card_time">
+                        <time data-testid="test-todo-due-date">
+                            <span class="clock_icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </span>
+                            <span class="date">
+                                Apr 22, 2026
+                            </span>
+                        </time>
+                        <time datetime="" data-testid="test-todo-time-remaining" class="dueDate" aria-live="polite">
+                            Due tomorrow
+                        </time>
+                        <span data-testid="test-todo-status" class="status" aria-label="status: pending">
+                            Pending
+                        </span>
+                    </div>
+                </section>
+                <footer>
+                    <ul data-testid="test-todo-tags" role="list">
+                        <li data-testid="test-todo-tag-work">Work</li>
+                        <li data-testid="test-todo-tag-urgent">Urgent</li>
+                    </ul>
+                    <div class="card_btns">
+                        <button data-testid="test-todo-edit-button" aria-label="edit task" class="edit_icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-edit">
+                                <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+                                <path d="m15 5 4 4"></path>
+                            </svg>
+                        </button>
+                        <button data-testid="test-todo-delete-button" aria-label="delete task" class="detete_icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </main>
+
+    <script src="/app.js"></script>
+</body>
+</html>
