@@ -15,18 +15,24 @@
             <p>Track and manage your tasks</p>
         </div>
         <div class="tasks_container">
-            <article data-testid="test-todo-card" class="high">
+            <article data-testid="test-todo-card" class="high" data-testid="test-todo-priority-indicator">
                 <header class="card_header">
                     <div class="card_top">
                         <input type="checkbox" data-testid="test-todo-complete-toggle" id="checkbox" aria-label="toggle task completion">
                         <h2 data-testid="test-todo-title">this is the title for tasks</h2>
                     </div>
-                    <span data-testid="test-todo-priority" class="pills" aria-label="priority: high">High</span>
+                    <span data-testid="test-todo-priority" class="pills" aria-label="priority: high" data-testid="test-todo-priority-indicator">High</span>
                 </header>
                 <section class="card_body">
-                    <p data-testid="test-todo-description" class="task_desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum vitae amet 
-                    </p>
+                    <div data-testid="test-todo-collapsible-section" id="collapse_desc" class="collapse close">
+                        <p data-testid="test-todo-description" class="task_desc">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum vitae amet 
+                        </p>
+                    </div>
+                    <button data-testid="test-todo-expand-toggle" aria-expanded="false" aria-controls="collapse_desc" class="expand_btn">
+                        show more
+                    </button>
+                    
                     <div class="card_time">
                         <time data-testid="test-todo-due-date">
                             <span class="clock_icon">
@@ -43,7 +49,11 @@
                             Due in 3 days
                         </time>
                         <span data-testid="test-todo-status" class="status" aria-label="status: in progress">
-                            In Progress
+                            <select name="status" id="status" data-testid="test-todo-status-control">
+                                <option value="pending">Pending</option>
+                                <option value="in_progress">In Progress</option>
+                                <option value="done">Done</option>
+                            </select>
                         </span>
                     </div>
                 </section>
@@ -71,18 +81,23 @@
                 </footer>
             </article>
 
-            <article data-testid="test-todo-card" class="low">
+            <article data-testid="test-todo-card" class="low" data-testid="test-todo-priority-indicator">
                 <header class="card_header">
                     <div class="card_top">
                         <input type="checkbox" data-testid="test-todo-complete-toggle" id="checkbox" aria-label="toggle task completion">
                         <h2 data-testid="test-todo-title">this is the title for tasks</h2>
                     </div>
-                    <span data-testid="test-todo-priority" class="pills" aria-label="priority: low">Low</span>
+                    <span data-testid="test-todo-priority" class="pills" aria-label="priority: low" data-testid="test-todo-priority-indicator">Low</span>
                 </header>
                 <section class="card_body">
-                    <p data-testid="test-todo-description" class="task_desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum vitae amet 
-                    </p>
+                    <div data-testid="test-todo-collapsible-section" id="collapse_desc" class="collapse close">
+                        <p data-testid="test-todo-description" class="task_desc">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum vitae amet 
+                        </p>
+                    </div>
+                    <button data-testid="test-todo-expand-toggle" aria-expanded="false" aria-controls="collapse_desc" class="expand_btn">
+                        show more
+                    </button>
                     <div class="card_time">
                         <time data-testid="test-todo-due-date">
                             <span class="clock_icon">
@@ -95,11 +110,15 @@
                                 Apr 22, 2026
                             </span>
                         </time>
-                        <time datetime="" data-testid="test-todo-time-remaining" class="dueDate" aria-live="polite">
+                        <time datetime="" data-testid="test-todo-time-remaining" data-testid="test-todo-overdue-indicator" class="dueDate" aria-live="polite">
                             Due tomorrow
                         </time>
                         <span data-testid="test-todo-status" class="status" aria-label="status: pending">
-                            Pending
+                            <select name="status" id="status" data-testid="test-todo-status-control">
+                                <option value="pending">Pending</option>
+                                <option value="in_progress">In Progress</option>
+                                <option value="done">Done</option>
+                            </select>
                         </span>
                     </div>
                 </section>
@@ -127,6 +146,33 @@
                 </footer>
             </article>
         </div>
+        <form action="" data-testid="test-todo-edit-form" class="edit_form hidden">
+            <div class="title">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" data-testid="test-todo-edit-title-input" placeholder="task title">
+            </div>
+            <div class="description">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" data-testid="test-todo-edit-description-input" placeholder="add task description"></textarea>
+            </div>
+            <div class="priority">
+                <label for="priority">Priority</label>
+                <select name="priority" id="priority" data-testid="test-todo-edit-priority-select">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <div class="due_date">
+                <label for="due_date">Due Date</label>
+                <input type="date" name="due_date" id="due_date" data-testid="test-todo-edit-due-date-input">
+            </div>
+
+            <div class="form_btns">
+                <button type="button" data-testid="test-todo-cancel-button">cancel</button>
+                <button type="submit" data-testid="test-todo-save-button" class="submit">Save</button>
+            </div>
+        </form>
     </main>
 
     <script src="/app.js"></script>
