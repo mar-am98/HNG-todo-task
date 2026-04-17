@@ -219,7 +219,8 @@ time.dueDate{
 }
 
 .status select:focus{
-    outline: none;
+    outline: 1px solid black;
+    outline-offset: 6px;
 }
 
 .status.pending{
@@ -334,6 +335,10 @@ ul li{
     border-radius: 4px;
 }
 
+textarea{
+    height: 50px !important;
+}
+
 .edit_form div.form_btns{
     grid-column: span 2;
     flex-direction: row;
@@ -431,4 +436,12 @@ div.form_btns .submit:hover{
         gap: 1.25rem;
     }
 
+    .edit_form{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .edit_form input, .edit_form textarea, .edit_form select{
+        width: 100%;
+    }
 }

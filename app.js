@@ -68,14 +68,15 @@
             });
         }
 
-
+        
+        
         editTask.addEventListener('click',(e) => {
             currentActiveCard = card;
-        
             const title = card.querySelector('[data-testid="test-todo-title"]').textContent.trim();
             const description = card.querySelector('[data-testid="test-todo-description"]').textContent.trim();
             const dateText = card.querySelector('.date').textContent.trim();
             const priority = card.querySelector('[data-testid="test-todo-priority"]').textContent.trim().toLowerCase();
+            const firstInput = editForm.querySelector('[data-testid="test-todo-edit-title-input"]');
 
             editForm.querySelector('[name="title"]').value = title;
             editForm.querySelector('[name="description"]').value = description;
@@ -83,50 +84,98 @@
             editForm.querySelector('[name="priority"]').value = priority;
 
             editForm.classList.remove('hidden');
+            
+            if(firstInput) firstInput.focus();
         })
 
-        cancelEdit.addEventListener('click', (e)=>{
-            e.preventDefault();
-            editForm.classList.add('hidden');
-        })
+        // cancelEdit.addEventListener('click', (e)=>{
+        //     e.preventDefault();
+        //     editForm.classList.add('hidden');
+        //     currentActiveCard = card;
+        //     if (currentActiveCard) {
+        //         if(editTask) editTask.focus();
+        //     }
+        // })
 
-        saveEdit.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (currentActiveCard) {
-                const newTitle = editForm.querySelector('[name="title"]').value;
-                const newDesc = editForm.querySelector('[name="description"]').value;
-                const newPriority = editForm.querySelector('[name="priority"]').value;
-                const newDate = editForm.querySelector('[name="due_date"]').value;
+        // saveEdit.addEventListener('click', (e) => {
+        //     e.preventDefault();
+        //     if (currentActiveCard) {
+        //         const newTitle = editForm.querySelector('[name="title"]').value;
+        //         const newDesc = editForm.querySelector('[name="description"]').value;
+        //         const newPriority = editForm.querySelector('[name="priority"]').value;
+        //         const newDate = editForm.querySelector('[name="due_date"]').value;
 
-                currentActiveCard.querySelector('[data-testid="test-todo-title"]').textContent = newTitle;
-                currentActiveCard.querySelector('[data-testid="test-todo-description"]').textContent = newDesc;
+        //         currentActiveCard.querySelector('[data-testid="test-todo-title"]').textContent = newTitle;
+        //         currentActiveCard.querySelector('[data-testid="test-todo-description"]').textContent = newDesc;
                 
-                const dateSpan = currentActiveCard.querySelector('.date');
-                const formattedDate = new Date(newDate).toLocaleDateString('en-US', {
-                    month: 'short', day: 'numeric', year: 'numeric'
-                });
-                dateSpan.textContent = formattedDate;
+        //         const dateSpan = currentActiveCard.querySelector('.date');
+        //         const formattedDate = new Date(newDate).toLocaleDateString('en-US', {
+        //             month: 'short', day: 'numeric', year: 'numeric'
+        //         });
+        //         dateSpan.textContent = formattedDate;
 
             
-                currentActiveCard.classList.remove('high', 'medium', 'low');
-                currentActiveCard.classList.add(newPriority);
+        //         currentActiveCard.classList.remove('high', 'medium', 'low');
+        //         currentActiveCard.classList.add(newPriority);
 
             
-                const priorityBadge = currentActiveCard.querySelector('[data-testid="test-todo-priority"]');
-                priorityBadge.textContent = newPriority.charAt(0).toUpperCase() + newPriority.slice(1);
-                priorityBadge.className = 'pills';
+        //         const priorityBadge = currentActiveCard.querySelector('[data-testid="test-todo-priority"]');
+        //         priorityBadge.textContent = newPriority.charAt(0).toUpperCase() + newPriority.slice(1);
+        //         priorityBadge.className = 'pills';
 
-                editForm.classList.add('hidden');
-                timeRemaining(); 
-            }
-        });
+        //         editForm.classList.add('hidden');
+        //         timeRemaining(); 
+        //     }
+        // });
 
         deleteTask.addEventListener('click',() => {
             alert("Delete clicked")
         })
 
     })
+    
+    cancelEdit.addEventListener('click', (e) => {
+        e.preventDefault();
+        editForm.classList.add('hidden');
 
+        // العودة للكارد "المخزن في الذاكرة"
+        if (currentActiveCard) {
+            currentActiveCard.querySelector('[data-testid="test-todo-edit-button"]').focus();
+        }
+    });
+
+    saveEdit.addEventListener('click', (e)=>{
+        e.preventDefault();
+        
+        if(currentActiveCard){
+            const newTitle = editForm.querySelector('[name="title"]').value;
+            const newDesc = editForm.querySelector('[name="description"]').value;
+            const newPriority = editForm.querySelector('[name="priority"]').value;
+            const newDate = editForm.querySelector('[name="due_date"]').value;
+
+            currentActiveCard.querySelector('[data-testid="test-todo-title"]').textContent = newTitle;
+            currentActiveCard.querySelector('[data-testid="test-todo-title"]').textContent = newTitle;
+            currentActiveCard.querySelector('[data-testid="test-todo-description"]').textContent = newDesc;
+            const dateSpan = currentActiveCard.querySelector('.date');
+            const formattedDate = new Date(newDate).toLocaleDateString('en-US', {
+                month: 'short', day: 'numeric', year: 'numeric'
+            });
+            dateSpan.textContent = formattedDate;
+
+        
+            currentActiveCard.classList.remove('high', 'medium', 'low');
+            currentActiveCard.classList.add(newPriority);
+
+            const priorityBadge = currentActiveCard.querySelector('[data-testid="test-todo-priority"]');
+            priorityBadge.textContent = newPriority.charAt(0).toUpperCase() + newPriority.slice(1);
+            priorityBadge.className = 'pills';
+
+            editForm.classList.add('hidden');
+            timeRemaining(); 
+            
+            currentActiveCard.querySelector('[data-testid="test-todo-edit-button"]').focus();
+        }
+    });
 
 
     function timeRemaining(){
@@ -145,20 +194,19 @@
                 const dueDate = new Date(dateText.textContent.trim());
                 const now = new Date();
                 const diffMs = dueDate - now;
-                const diffMins = Math.floor(diffMs / (1000 * 60));
-                const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-                const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                const absDiffMs = Math.abs(diffMs);
+                const diffMins = Math.floor(absDiffMs / (1000 * 60));
+                const diffHours = Math.floor(absDiffMs / (1000 * 60 * 60));
+                const diffDays = Math.floor(absDiffMs / (1000 * 60 * 60 * 24));
+
                 let timeText = "";
                 let color = "";
 
                 if(diffMs < 0){
-                    const absMins = Math.abs(diffMins);
-                    const absHours = Math.abs(diffHours);
-                    const absDays = Math.abs(diffDays);
-
-                    if(absMins < 60) timeText = `Overdue by ${absMins} minutes`;
-                    else if(absHours < 24) timeText = `Overdue by ${absHours} hours`;
-                    else timeText = `Overdue by ${absDays} days`;
+                    if(diffMins < 60) timeText = `Overdue by ${diffMins} minutes`;
+                    else if(diffHours < 24) timeText = `Overdue by ${diffHours} hours`;
+                    else if(diffDays === 1) timeText = `Overdue by 1 day`;
+                    else timeText = `Overdue by ${diffDays} days`;
                     
                     color = "red";
                 } else{
